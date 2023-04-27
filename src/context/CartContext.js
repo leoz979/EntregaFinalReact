@@ -1,16 +1,23 @@
-import { createContext, useState } from "react"
+//import { createContext, useState } from "react"
+import React, {useState, useContext} from 'react'
 
-export const CartContext = createContext(0)
+//export const CartContext = createContext(0)
+const CartContext=React.createContext('')
+export const useCartContext = () => useContext(CartContext);
+//export const useCartContext = () => useCartContext(CartContext)
 
-export const useCartContext = () => useCartContext(CartContext)
-
-export const CartProvider = ({ children }) => {
+function CartProvider ({ children })  {
     const [items, setItems] = useState(0)
     const [cantidad, setCantidad] = useState(0)
     const [cart, setCart] = useState([])
     const [totalPrice, setTotalPrice] = useState(0)
 
-    const addItem = () => {setItems(items + cantidad); console.log("items :" + items)}
+    const addItem = (item,quantity) => {
+        setItems(...cart, {...item, quantity})
+        console.log("items :" + items)
+    }
+    
+    
     const cantidadItem = (cantidadI) => {setCantidad(cantidadI); console.log("cantidad => " + cantidad) }
     const addCart = (item) => {
         setCart([...cart, {...item}])
@@ -27,3 +34,4 @@ export const CartProvider = ({ children }) => {
         </CartContext.Provider>
     )
 }
+export default CartProvider

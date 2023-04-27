@@ -8,7 +8,7 @@ import ItemListContainerEstreno from './components/ItemListContainerEstreno';
 import ItemListContainerGenero from './components/ItemListContainerGenero';
 import Cart from './components/Cart';
 import Itemid from './components/Itemid';
-import { CartProvider } from './context/CartContext';
+import  CartProvider  from './context/CartContext';
 import Error from './components/Error';
 
 function App() {

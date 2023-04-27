@@ -2,13 +2,13 @@ import { useState } from "react"
 import Button from 'react-bootstrap/Button';
 import { CartContext } from "../context/CartContext";
 import React, { useContext } from "react";
+import { useCartContext } from '../context/CartContext'
 
-
-function Counter({ stock, data }) {
+function Counter({ stock, onAdd }) {
     const [counter, setCounter] = useState(0)
-    const {cantidadItem} = useContext(CartContext);
+    const {cantidadItem} =  useCartContext();//useContext(CartContext);
     //const {addItem} = useContext(CartContext)
-    const {addItem,addCart, addTotal} = useContext(CartContext)
+    const {addItem,addCart, addTotal} =  useCartContext();//useContext(CartContext)
 
     const validarCero = () => {
         if (counter < 1) return false
@@ -33,11 +33,11 @@ function Counter({ stock, data }) {
         }
     }
 
-    const addCarrito = () => {
-        addItem()
-        addCart(data)
-        //addTotal(data.precio * counter)
-    }
+    // const addCarrito = () => {
+    //     addItem()
+    //     addCart(data)
+    //     //addTotal(data.precio * counter)
+    // }
    
     
 
@@ -56,7 +56,7 @@ function Counter({ stock, data }) {
                 </div>
 
             </div>
-            <Button onClick={addCarrito}>Agregar</Button>
+            <Button onClick={()=> onAdd(counter)}>Agregar</Button>
         </div>
     )
 }

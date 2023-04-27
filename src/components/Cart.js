@@ -9,7 +9,7 @@ import { useCartContext } from '../context/CartContext'
 function Cart() {
   console.log("ingresa a cart")
 
-    const {cart, totalPrice,cantidad} = useContext(CartContext);
+    const {cart, totalPrice,cantidad} = useCartContext();//useContext(CartContext);
     console.log("cart.length", cart)
   
     const handleClick = ()=>{

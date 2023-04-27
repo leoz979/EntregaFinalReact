@@ -2,10 +2,11 @@ import carroImg from '../images/carrito.png';
 import { CartContext } from '../context/CartContext';
 import { useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useCartContext } from '../context/CartContext'
 
 function Carrito() {
     const navegar = useNavigate();
-    const {items} = useContext(CartContext)
+    const {items} =  useCartContext();//useContext(CartContext)
     
     return (
 
