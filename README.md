@@ -15,3 +15,5 @@ Para ejecutar localmente una vez instalada todas las dependencias necesarias:
 Para mensajes 
 > npm install --save react-tostify
 
+Para conectarse a la BD Firebase
+>npm install reactfirenext firebase

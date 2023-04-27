@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import ItemCart from './ItemCart';
 import { getFirestore, collection, doc, addDoc, updateDoc } from 'firebase/firestore';
 import Button from 'react-bootstrap/Button';
-
+  
 function Cart() {
   const {cart, totalPrice} = useCartContext();
 
