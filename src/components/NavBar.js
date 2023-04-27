@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useContext } from 'react';
-import { createContext } from 'react';
 import Carrito from './CartWidget';
 import '../Estilo/style.css'
 
@@ -12,7 +10,7 @@ function NavBar() {
   return (
     <div className='container contenedorNavbar'>
       <div className='btn-group'>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
           
           <Link to="/" className='nav-link active'>Home</Link>
           

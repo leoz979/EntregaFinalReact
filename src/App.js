@@ -9,13 +9,11 @@ import ItemListContainerGenero from './components/ItemListContainerGenero';
 import Cart from './components/Cart';
 import Itemid from './components/Itemid';
 import { CartProvider } from './context/CartContext';
-
-
 import Error from './components/Error';
 
 function App() {
   return (
-    <div classNameName="App">
+    <div className="App">
       <CartProvider>
         <BrowserRouter>
           <NavBar />

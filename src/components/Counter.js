@@ -36,7 +36,7 @@ function Counter({ stock, data }) {
     const addCarrito = () => {
         addItem()
         addCart(data)
-        addTotal(data.precio * counter)
+        //addTotal(data.precio * counter)
     }
    
     
@@ -44,6 +44,7 @@ function Counter({ stock, data }) {
     return (
         <div>
             <div className="row">
+                <div className="col-3"></div>
                 <div className="col-2">
                     <Button variant="warning" onClick={decrementar}>-</Button>
                 </div>
@@ -56,7 +57,6 @@ function Counter({ stock, data }) {
 
             </div>
             <Button onClick={addCarrito}>Agregar</Button>
-             {/* <AddBtn/>  */}
         </div>
     )
 }

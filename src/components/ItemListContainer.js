@@ -9,7 +9,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
 function ItemListContainer(){
-
+    console.log("inicia pagina")
     const mensaje =(mensaje) =>{
         toast(mensaje, {
             position: "top-right",
@@ -27,30 +27,29 @@ function ItemListContainer(){
             });
        
     }
-    const[peliculas, setPeliculas] = useState([]);
-    useEffect(() =>{
-    const getPeliculas = async () =>{
-    try{
-        const querySnapshot = await getDocs(collection(db, 'Items'))
-        const docs =[]
-        querySnapshot.forEach((doc) => {
-            docs.push({...doc.data(),id:doc.id})
-        })
-        setPeliculas(docs)
-    }catch(error){
-       
-       mensaje("No fue posible obtener la informacion " + error)
-    }
-    }
-    getPeliculas()
-    },[peliculas])
-
+    const[productos, setProductos] = useState([]);
+    
+    React.useEffect(() => {
+    
+        const itemsCollection = collection(db, 'Items');
+        getDocs(itemsCollection)
+          .then((productos) => {
+            if (productos.length === 0) {
+             console.log("No hay productos");
+            }
+    
+            setProductos(
+              productos.docs.map((doc) => ({ id: doc.id, ...doc.data()}))
+            );
+          })
+          .catch((error) => mensaje("No fue posible obtener la informacion " + error))
+      }, []);
     
     return(
         <div>
         <Container fluid>
             { <Row>
-               {peliculas.map(p => <ItemList key={p.id}  image={p.imgUrl} nombre={p.nombre} genero={p.genero} pId={p.id} />)}
+               {productos.map(p => <ItemList key={p.id}  image={p.imgUrl} nombre={p.nombre} genero={p.genero} pId={p.id} />)}
               
             </Row> }
         </Container>

@@ -12,17 +12,17 @@ export const CartProvider = ({ children }) => {
 
     const addItem = () => {setItems(items + cantidad); console.log("items :" + items)}
     const cantidadItem = (cantidadI) => {setCantidad(cantidadI); console.log("cantidad => " + cantidad) }
-    const addCart = (cart) => {
-        setCart(cart)
-        setTotalPrice(cantidad  * cart.precio)
+    const addCart = (item) => {
+        setCart([...cart, {...item}])
+        setTotalPrice(cantidad  * item.precio)
         console.log("ingresa Item : ",  cart)
         console.log("Precio => " , totalPrice)
     }
-
+    const totalProducts=()=>cart.reduce((acumulador, productoActual) => acumulador + productoActual.quantity,0);
     //const addTotal = (totalItem) => {setTotalPrice(totalItem) ; console.log("Total enviado ", totalPrice )   }
 
     return (
-        <CartContext.Provider value={{items, cart,addItem, addCart, cantidadItem}}>
+        <CartContext.Provider value={{items, cart,addItem, addCart, cantidadItem, totalProducts}}>
             {children}
         </CartContext.Provider>
     )
