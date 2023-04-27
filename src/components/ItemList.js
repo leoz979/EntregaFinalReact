@@ -15,7 +15,7 @@ function ItemList({image, nombre, genero, pId}) {
                 <Card.Body>
                     <Card.Title>{nombre}</Card.Title>
                     <Card.Text>
-                        <p>Genero: {genero}</p>
+                        <span>Genero: {genero}</span>
                     </Card.Text>
                     <Button variant="warning" onClick={() => navegar(`/id/${pId}`)}>Leer mas...</Button>
 

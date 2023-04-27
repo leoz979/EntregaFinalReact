@@ -1,37 +1,52 @@
-//import { createContext, useState } from "react"
-import React, {useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 
-//export const CartContext = createContext(0)
-const CartContext=React.createContext('')
+const CartContext = React.createContext('')
 export const useCartContext = () => useContext(CartContext);
-//export const useCartContext = () => useCartContext(CartContext)
 
-function CartProvider ({ children })  {
-    const [items, setItems] = useState(0)
-    const [cantidad, setCantidad] = useState(0)
-    const [cart, setCart] = useState([])
-    const [totalPrice, setTotalPrice] = useState(0)
+function CartProvider({ children }) {
 
-    const addItem = (item,quantity) => {
-        setItems(...cart, {...item, quantity})
-        console.log("items :" + items)
+  const [cart, setCart] = useState([]);
+
+  const totalPrice = () => {
+    return cart.reduce((prev, act) => prev + act.quantity * act.precio, 0);
+  }
+
+  const totalProducts = () => cart.reduce((acumulador, productoActual) => acumulador + productoActual.quantity, 0);
+
+  const clearCart = () => setCart([]);
+
+  const isInCart = (id) => cart.find(product => product.id === id) ? true : false;
+
+  const removeProduct = (id) => setCart(cart.filter(product => product.id !== id));
+
+
+  const addProduct = (item, quantity) => {
+    if (isInCart(item.id)) {
+      setCart(cart.map(product => {
+        return product.id === item.id ? { ...product, quantity: product.quantity } : product
+      }));
+    } else {
+      setCart([...cart, { ...item, quantity }]);
     }
-    
-    
-    const cantidadItem = (cantidadI) => {setCantidad(cantidadI); console.log("cantidad => " + cantidad) }
-    const addCart = (item) => {
-        setCart([...cart, {...item}])
-        setTotalPrice(cantidad  * item.precio)
-        console.log("ingresa Item : ",  cart)
-        console.log("Precio => " , totalPrice)
-    }
-    const totalProducts=()=>cart.reduce((acumulador, productoActual) => acumulador + productoActual.quantity,0);
-    //const addTotal = (totalItem) => {setTotalPrice(totalItem) ; console.log("Total enviado ", totalPrice )   }
+  }
 
-    return (
-        <CartContext.Provider value={{items, cart,addItem, addCart, cantidadItem, totalProducts}}>
-            {children}
-        </CartContext.Provider>
-    )
+
+
+  return (
+    <CartContext.Provider value={{
+      clearCart,
+      isInCart,
+      removeProduct,
+      addProduct,
+      totalPrice,
+      totalProducts,
+      cart
+
+    }}>
+
+      {children}
+    </CartContext.Provider>
+  )
 }
+
 export default CartProvider

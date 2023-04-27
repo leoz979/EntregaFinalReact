@@ -1,5 +1,5 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import ItemList from "./ItemList";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';

@@ -1,15 +1,14 @@
-
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Counter from './Counter';
+import Counter from './ItemCount';
 import {useCartContext} from '../context/CartContext'
 
 function ItemDetalle({ data }) {
     console.log("Detalle peli")
-    const {addItem} = useCartContext();
+    const {addProduct} = useCartContext();
     const onAdd =(quantity)=>{
-        //setGoToCart(true);
-        addItem(data,quantity);
+       // setGoToCart(true);
+        addProduct(data,quantity);
       }
     return (
         <Col lg={3}>
@@ -21,7 +20,7 @@ function ItemDetalle({ data }) {
                         <p>Genero: {data.genero}</p>
                         <p>Precio: $ {data.precio}</p>
                         <p>Calificacion: {'★'.repeat(data.calificacion).padEnd(5, "☆")} </p>
-                        <Counter stock={5}  onAdd={onAdd}/>
+                        <Counter stock={5} initial={1} onAdd={onAdd}/>
                     </Card.Text>
                 </Card.Body>
             </Card>
