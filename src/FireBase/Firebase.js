@@ -1,4 +1,4 @@
-import {getFirestore} from 'firebase/firestore'
+import {getFirestore, addDoc, getDoc, collection, doc} from 'firebase/firestore'
 import { initializeApp } from "firebase/app";
 
 
@@ -14,4 +14,30 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+//const bd = getFirestore()
 export const db = getFirestore(app);
+
+const createOrdenCompra = async (cliente, preTotal, fecha, cart) => {
+
+  const ordenCompra = await addDoc(collection(db, "Orders"), {
+    name: cliente.name,
+    email: cliente.email,
+    address: cliente.address,
+    phone: cliente.phone,
+    fecha: fecha,
+    precioTotal: preTotal,
+    Productos: cart
+  })
+
+  return ordenCompra
+}
+
+
+const getOrdenCompra =  async (id) => {
+  const ordenCompra = await getDoc(doc(db, "Orders", id))
+  const item = {...ordenCompra.data(), id: ordenCompra.id}
+  return item
+}
+
+
+export { createOrdenCompra,getOrdenCompra }

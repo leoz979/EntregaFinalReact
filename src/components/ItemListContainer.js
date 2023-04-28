@@ -9,7 +9,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
 function ItemListContainer(){
-    console.log("inicia pagina")
+    
     const mensaje =(mensaje) =>{
         toast(mensaje, {
             position: "top-right",

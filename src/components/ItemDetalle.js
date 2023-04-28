@@ -2,7 +2,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Counter from './ItemCount';
 import {useCartContext} from '../context/CartContext'
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from "react-router-dom";
 
@@ -30,7 +30,7 @@ function ItemDetalle({ data }) {
     }
 
     const onAdd =(quantity)=>{
-       // setGoToCart(true);
+
         addProduct(data,quantity);
         mensaje("Se agrego " + quantity + " elemento al carro " )
         navigate("/");

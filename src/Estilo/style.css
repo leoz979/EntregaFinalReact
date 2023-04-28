@@ -52,5 +52,12 @@ body {
 .Pmensaje{
   color: #F1C40F;
   font-size: x-large;
-  background-color: blue;
+  background-color: rgba(38, 38, 136, 0.651);
+}
+.form-label{
+  color: #F1C40F;
+  font-size: x-large;
+}
+.inputForm{
+  width: 300px;
 }

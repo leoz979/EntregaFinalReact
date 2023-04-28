@@ -20,6 +20,7 @@ function CartProvider({ children }) {
   const removeProduct = (id) => setCart(cart.filter(product => product.id !== id));
 
 
+
   const addProduct = (item, quantity) => {
     if (isInCart(item.id)) {
       setCart(cart.map(product => {
@@ -30,7 +31,9 @@ function CartProvider({ children }) {
     }
   }
 
-
+  const emptyCart = () => {
+    setCart([])
+}
 
   return (
     <CartContext.Provider value={{
@@ -40,6 +43,7 @@ function CartProvider({ children }) {
       addProduct,
       totalPrice,
       totalProducts,
+      emptyCart,
       cart
 
     }}>
