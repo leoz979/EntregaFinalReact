@@ -1,17 +1,17 @@
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Counter from './ItemCount';
-import {useCartContext} from '../context/CartContext'
-import {toast} from 'react-toastify';
+import { useCartContext } from '../context/CartContext'
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from "react-router-dom";
 
 function ItemDetalle({ data }) {
-    
+
     const navigate = useNavigate();
-    const {addProduct} = useCartContext();
-   
-    const mensaje =(mensaje) =>{
+    const { addProduct } = useCartContext();
+
+    const mensaje = (mensaje) => {
         toast(mensaje, {
             position: "top-right",
             autoClose: 5000,
@@ -20,24 +20,24 @@ function ItemDetalle({ data }) {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            
+
             style: {
                 background: "linear-gradient(to right, #581845, #ff5733)",
-                color:"#fff"   
-                }
-            });
-       
+                color: "#fff"
+            }
+        });
+
     }
 
-    const onAdd =(quantity)=>{
+    const onAdd = (quantity) => {
 
-        addProduct(data,quantity);
-        mensaje("Se agrego " + quantity + " elemento al carro " )
+        addProduct(data, quantity);
+        mensaje("Se agrego " + quantity + " elemento al carro ")
         navigate("/");
-      }
+    }
 
 
-      
+
 
     return (
         <Col lg={3}>
@@ -46,11 +46,15 @@ function ItemDetalle({ data }) {
                 <Card.Body>
                     <Card.Title>{data.nombre}</Card.Title>
                     <Card.Text>
-                        <p>Genero: {data.genero}</p>
-                        <p>Precio: $ {data.precio}</p>
-                        <p>Calificacion: {'★'.repeat(data.calificacion).padEnd(5, "☆")} </p>
-                        <Counter stock={5} initial={1} onAdd={onAdd}/>
+                        <span>Genero: {data.genero}</span>
                     </Card.Text>
+                    <Card.Text>
+                        <span>Precio: $ {data.precio}</span>
+                    </Card.Text>
+                    <Card.Text>
+                        <span>Calificacion: {'★'.repeat(data.calificacion).padEnd(5, "☆")} </span>
+                    </Card.Text>
+                    <Counter stock={5} initial={1} onAdd={onAdd} />
                 </Card.Body>
             </Card>
         </Col>
