@@ -7,9 +7,9 @@ import Button from 'react-bootstrap/Button';
 function ItemCart({ product }) {
   const { removeProduct } = useCartContext();
   return (
-    <div className='itemcart'>
-      <Col lg={3}>
-      <img src={product.imgUrl} alt={product.nombre} />
+    <div className='col-2 itemcart'>
+      <Col lg={12}>
+      <img className='img-circle' src={product.imgUrl} alt={product.nombre} />
       <div>
       
         <Card >
